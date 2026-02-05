@@ -1,0 +1,141 @@
+<!-- 19 Reasons Section -->
+<h2 style="color:#ff7f50; margin-top:50px;">19 Reasons Why I Love You ❤️</h2>
+
+<div id="reasons-container" style="display:flex; flex-wrap:wrap; justify-content:center; margin:20px;">
+    <!-- 19 clickable buttons -->
+    <button class="reason-btn">1</button>
+    <button class="reason-btn">2</button>
+    <button class="reason-btn">3</button>
+    <button class="reason-btn">4</button>
+    <button class="reason-btn">5</button>
+    <button class="reason-btn">6</button>
+    <button class="reason-btn">7</button>
+    <button class="reason-btn">8</button>
+    <button class="reason-btn">9</button>
+    <button class="reason-btn">10</button>
+    <button class="reason-btn">11</button>
+    <button class="reason-btn">12</button>
+    <button class="reason-btn">13</button>
+    <button class="reason-btn">14</button>
+    <button class="reason-btn">15</button>
+    <button class="reason-btn">16</button>
+    <button class="reason-btn">17</button>
+    <button class="reason-btn">18</button>
+    <button class="reason-btn">19</button>
+</div>
+
+<!-- Pop-up message -->
+<div id="reason-popup" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:#ff7f50;
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    font-size:1.3em;
+    box-shadow:0 0 20px #ffd700;
+    z-index:1000;
+    max-width:80%;
+">
+</div>
+
+<script>
+    // List of 19 reasons
+    const reasons = [
+        "you make me laugh even in my worst days 😄",
+        "I love how open you are about everthing",
+        "How kind and caring you are ❤️",
+        "The way you support me in everything ❤️ ",
+        "You are so smart",
+        "you are confident in yourself(that's the best) 🌟",
+        "how hot and sexy you are obv😁",
+        "you will never give up on sth if you count on it",
+        "you are such a positive person i swear ✨",
+        "you make me feel special 💖",
+        "you are loyal(it makes me fall for you again and again) 😍",
+        "The way you love your friends and family ",
+        "you are hardworker and i love that",
+        "the way you treat me🫶🏻🫠",
+        "How patient you are even when things go wrong 🌈",
+        "i love your handsome face 🌟",
+        "The way you make me feel safe and loved ❤️",
+        "you are so supportive😘",
+        "Every little thing you do to make life better 💕"
+    ];
+
+    const buttons = document.querySelectorAll('.reason-btn');
+    const popup = document.getElementById('reason-popup');
+
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            popup.textContent = reasons[index];
+            popup.style.display = 'block';
+            popup.style.opacity = 0;
+            let opacity = 0;
+            const fadeIn = setInterval(() => {
+                if(opacity >= 1){
+                    clearInterval(fadeIn);
+                } else {
+                    opacity += 0.05;
+                    popup.style.opacity = opacity;
+                }
+            }, 20);
+
+            // Auto hide after 4 seconds
+            setTimeout(() => {
+                let fadeOutOpacity = 1;
+                const fadeOut = setInterval(() => {
+                    if(fadeOutOpacity <= 0){
+                        clearInterval(fadeOut);
+                        popup.style.display = 'none';
+                    } else {
+                        fadeOutOpacity -= 0.05;
+                        popup.style.opacity = fadeOutOpacity;
+                    }
+                }, 20);
+            }, 4000);
+
+            // Add a little heart animation
+            const heart = document.createElement('div');
+            heart.textContent = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random()*80 + 'vw';
+            heart.style.top = '80vh';
+
+
+heart.style.fontSize = (20 + Math.random()*30) + 'px';
+            heart.style.opacity = 1;
+            heart.style.transition = 'all 2s ease-out';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.style.top = (Math.random()*50) + 'vh';
+                heart.style.opacity = 0;
+            }, 50);
+            setTimeout(() => heart.remove(), 2000);
+        });
+    });
+</script>
+
+<style>
+    .reason-btn {
+        background:#ffb347;
+        color:white;
+        border:none;
+        border-radius:50%;
+        width:50px;
+        height:50px;
+        margin:5px;
+        font-weight:bold;
+        font-size:1.2em;
+        cursor:pointer;
+        transition: transform 0.2s, background 0.2s;
+    }
+    .reason-btn:hover {
+        transform: scale(1.2);
+        background:#ff7f50;
+    }
+</style>
